@@ -1,9 +1,10 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import { useRef } from "react";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -17,7 +18,21 @@ const style = {
   padding: "24px",
 };
 
-export default function AddDonationEvent({ handleClose, open, handleOpen }) {
+export default function AddDonationEvent({ handleClose, open, handleOpen, render, setRender }) {
+  const name = useRef(null);
+  const handleAdd = ()=>{
+    axios.post("/donation/event",{
+      name: name.current.value
+    })
+    .then((res) => {
+        console.log(res.data);
+        setRender(res.data);
+        handleClose();
+      })
+      .catch( (err)=>{
+        console.log(err);
+      })
+  }
   return (
     <div>
       <Modal
@@ -51,19 +66,8 @@ export default function AddDonationEvent({ handleClose, open, handleOpen }) {
                   style={{ width: "90%" , marginTop: 40}}
                   id="outlined-required"
                   label="Tên khoản đóng góp"
-                  defaultValue=""
+                  inputRef={name}
                 />
-              </div>
-              <div className="flex justify-center">
-                {/* <TextField
-                style={{ width: "90%" , marginTop: 40 }}
-                  id="outlined-number"
-                  label="So tien"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                /> */}
               </div>
             </Box>
           </Typography>
@@ -85,6 +89,7 @@ export default function AddDonationEvent({ handleClose, open, handleOpen }) {
             <Button
               style={{ width: 120, borderRadius: 20 }}
               variant="contained"
+              onClick={handleAdd}
             >
               Add
             </Button>

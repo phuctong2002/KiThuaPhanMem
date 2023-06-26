@@ -19,9 +19,8 @@ const Donation = () => {
 
   const columns = [
     {
-      title: "Ten khoan thu",
-      dataIndex: "tenkhoanthu",
-      key: "tenkhoanthu",
+      title: "Ten khoan dong gop",
+      dataIndex: "name",
       width: "40%"
     },
     {
@@ -50,33 +49,22 @@ const Donation = () => {
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);
+  const [render, setRender] = useState(0);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-
-  //   useEffect(()=>{
-  //     axios.get("/api/v1/hokhau", {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token"),
-  //       }
-  //     })
-  //       .then( res =>{
-  //         const newData = res.data.map( (item, index)=>{
-  //           return {
-  //             key: index,
-  //             mahokhau: item.mahokhau,
-  //             machuho: item.manhankhau,
-  //             ten: item.hoten,
-  //             diachi: item.diachi,
-  //           }
-  //         })
-  //         console.log( newData );
-  //         setData( newData );
-  //       })
-  //   },[])
+  useEffect( ()=>{
+    axios.get("/donation/event/")
+    .then( (res)=>{
+      setData(res.data);
+    })
+    .catch( (err)=>{
+      console.error(err);
+    })
+  },[render])
 
   return (
     <div className="h-[100%] w-[100%] ">
@@ -95,7 +83,7 @@ const Donation = () => {
         dataSource={data}
         pagination={{ pageSize: 8 }}
       ></Table>
-      <AddDonationEvent open={open} handleClose={handleClose} handleOpen={handleOpen}/>
+      <AddDonationEvent open={open} handleClose={handleClose} handleOpen={handleOpen} render={render} setRender={setRender}/>
     </div>
   );
 };
