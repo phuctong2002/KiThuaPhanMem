@@ -109,7 +109,7 @@ const Person = () => {
     setOpenDeadForm(true);
   };
   const handleCloseDeadForm = () => setOpenDeadForm(false);
-
+  const [render, setRender] = useState(0);
   const [data, setData] = useState(initData);
 
   useEffect(() => {
@@ -139,7 +139,7 @@ const Person = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [render]);
 
   return (
     <div>
@@ -159,11 +159,13 @@ const Person = () => {
           Khai tử
         </Button>
       </div>
-      <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
+      <Table columns={columns} dataSource={data} pagination={{ pageSize: 4 }} />
       <AddPerson
         handleClose={handleClose}
         open={openAddForm}
         handleOpen={handleOpen}
+        render={render}
+        setRender={setRender}
       />
       <DeadForm
         handleClose={handleCloseDeadForm}

@@ -23,7 +23,8 @@ export default function AddPerson({
   handleClose,
   open,
   handleOpen,
-  
+  render,
+  setRender
 }) {
   
   const name = useRef(null);
@@ -55,6 +56,7 @@ export default function AddPerson({
     })
     .then((res) => {
         console.log(res);
+        setRender(render + 1);
         handleClose();
       }).then( (response)=>{
         console.log("oke nhe");
