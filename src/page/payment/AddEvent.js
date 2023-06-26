@@ -1,9 +1,11 @@
-import * as React from "react";
+// import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import { useRef } from "react";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -17,7 +19,24 @@ const style = {
   padding: "24px",
 };
 
-export default function AddEvent({ handleClose, open, handleOpen }) {
+export default function AddEvent({ handleClose, open, handleOpen, render, setRender }) {
+  const name = useRef(null);
+  const aom = useRef(null);
+  const handleAdd = ()=>{
+    console.log( name.current.value);
+    console.log( aom.current.value);
+    axios.post("/payment/event", {
+      name: name.current.value,
+      aom: aom.current.value
+    })
+      .then( (res)=>{
+        setRender(render + 1);
+        handleClose();
+      })
+      .catch( (err)=>{
+        console.log(err);
+      })
+  }
   return (
     <div>
       <Modal
@@ -52,6 +71,7 @@ export default function AddEvent({ handleClose, open, handleOpen }) {
                   id="outlined-required"
                   label="Tên khoản thu"
                   defaultValue=""
+                  inputRef={name}
                 />
               </div>
               <div className="flex justify-center">
@@ -60,6 +80,7 @@ export default function AddEvent({ handleClose, open, handleOpen }) {
                   id="outlined-number"
                   label="So tien"
                   type="number"
+                  inputRef={aom}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -85,6 +106,7 @@ export default function AddEvent({ handleClose, open, handleOpen }) {
             <Button
               style={{ width: 120, borderRadius: 20 }}
               variant="contained"
+              onClick={handleAdd}
             >
               Add
             </Button>

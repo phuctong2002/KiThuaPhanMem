@@ -3,15 +3,15 @@ import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import AddEvent from "./AddEvent";
 
 const initData = [
   {
     tenkhoanthu: "Tien cuu chien binh Viet Nam",
     sotien: "10000",
-    thuduoc: "10000000"
+    thuduoc: "10000000",
   },
 ];
 
@@ -21,42 +21,42 @@ const Payment = () => {
   const columns = [
     {
       title: "Ten khoan thu",
-      dataIndex: "tenkhoanthu",
-      key: "tenkhoanthu",
-      width : "25%"
+      dataIndex: "name",
+      width: "25%",
     },
     {
       title: "So tien",
-      dataIndex: "sotien",
-      key: "sotien",
-      width : "25%"
+      dataIndex: "aom",
+      width: "25%",
     },
     {
       title: "Thu duoc",
       dataIndex: "thuduoc",
-      key: "thuduoc",
-      width : "25%"
+      width: "25%",
     },
     {
       title: "Thao tac",
       render: (_, record) => (
         <>
           <Button
-            style={{ borderRadius: 20 , marginRight: 20}}
+            style={{ borderRadius: 20, marginRight: 20 }}
             variant="contained"
             fontSize="small"
           >
             Detail
           </Button>
-          <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
-          <DeleteIcon style={{cursor: "pointer", color:"red"}} />
+          <EditIcon
+            style={{ cursor: "pointer", marginRight: 20, color: "#E4CCCC" }}
+          />
+          <DeleteIcon style={{ cursor: "pointer", color: "red" }} />
         </>
       ),
-      width : "25%"
+      width: "25%",
     },
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);
+  const [render, setRender] = useState(0);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -64,26 +64,17 @@ const Payment = () => {
     setOpen(false);
   };
 
-  //   useEffect(()=>{
-  //     axios.get("/api/v1/hokhau", {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token"),
-  //       }
-  //     })
-  //       .then( res =>{
-  //         const newData = res.data.map( (item, index)=>{
-  //           return {
-  //             key: index,
-  //             mahokhau: item.mahokhau,
-  //             machuho: item.manhankhau,
-  //             ten: item.hoten,
-  //             diachi: item.diachi,
-  //           }
-  //         })
-  //         console.log( newData );
-  //         setData( newData );
-  //       })
-  //   },[])
+  useEffect(() => {
+    axios
+      .get("/payment/event/")
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [render]);
 
   return (
     <div className="h-[100%] w-[100%] ">
@@ -102,7 +93,7 @@ const Payment = () => {
         dataSource={data}
         pagination={{ pageSize: 8 }}
       ></Table>
-      <AddEvent open={open} handleClose={handleClose} handleOpen={handleOpen}/>
+      <AddEvent open={open} handleClose={handleClose} handleOpen={handleOpen} render={render} setRender={setRender} />
     </div>
   );
 };
