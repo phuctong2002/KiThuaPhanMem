@@ -3,8 +3,8 @@ import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import AddAbsence from "./AddAbsence";
 
 const initData = [
@@ -21,38 +21,40 @@ const Absence = () => {
 
   const columns = [
     {
-      title: "Ma ho khau",
-      dataIndex: "mahokhau",
-      key: "mahokhau",
+      title: "Nhan khau",
+      dataIndex: "person_name",
     },
     {
-      title: "Ma chu ho",
-      dataIndex: "machuho",
-      key: "machuho",
+      title: "Dia diem",
+      dataIndex: "place",
     },
     {
-      title: "Chu ho",
-      dataIndex: "ten",
-      key: "ten",
+      title: "Ngay bat dau",
+      dataIndex: "start_date",
     },
     {
-      title: "Dia chi",
-      dataIndex: "diachi",
-      key: "diachi",
+      title: "Ngay ket thuc",
+      dataIndex: "end_date",
+    },
+    {
+      title: "Li do",
+      dataIndex: "reason",
     },
     {
       title: "Thao tac",
       render: (_, record) => (
         <>
-          
-          <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
-          <DeleteIcon style={{cursor: "pointer", color:"red"}} />
+          <EditIcon
+            style={{ cursor: "pointer", marginRight: 20, color: "#E4CCCC" }}
+          />
+          <DeleteIcon style={{ cursor: "pointer", color: "red" }} />
         </>
       ),
     },
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);
+  const [render, setRender] = useState(0);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -60,26 +62,17 @@ const Absence = () => {
     setOpen(false);
   };
 
-  //   useEffect(()=>{
-  //     axios.get("/api/v1/hokhau", {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token"),
-  //       }
-  //     })
-  //       .then( res =>{
-  //         const newData = res.data.map( (item, index)=>{
-  //           return {
-  //             key: index,
-  //             mahokhau: item.mahokhau,
-  //             machuho: item.manhankhau,
-  //             ten: item.hoten,
-  //             diachi: item.diachi,
-  //           }
-  //         })
-  //         console.log( newData );
-  //         setData( newData );
-  //       })
-  //   },[])
+  useEffect(() => {
+    axios
+      .get("/absence/")
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [render]);
 
   return (
     <div className="h-[100%] w-[100%] ">
@@ -98,7 +91,13 @@ const Absence = () => {
         dataSource={data}
         pagination={{ pageSize: 8 }}
       ></Table>
-      <AddAbsence open={open} handleClose={handleClose} handleOpen={handleOpen}/>
+      <AddAbsence
+        open={open}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        render={render}
+        setRender={setRender}
+      />
     </div>
   );
 };
