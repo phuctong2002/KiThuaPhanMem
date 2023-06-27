@@ -42,6 +42,10 @@ const Payment = () => {
             style={{ borderRadius: 20, marginRight: 20 }}
             variant="contained"
             fontSize="small"
+            onClick={()=>{
+              console.log(record);
+              navigate(`/payment-event-detail/${record.id}`)
+            }}
           >
             Detail
           </Button>

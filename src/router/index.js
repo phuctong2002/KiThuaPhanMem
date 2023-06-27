@@ -8,6 +8,7 @@ const { default: Sojourn } = require("../page/sojourn");
 const { default: Absence } = require("../page/absence");
 const { default: Payment } = require("../page/payment");
 const { default: Donation } = require("../page/donation");
+const {default: PaymentEventDetail} = require("../page/payment/PaymentEventDetail");
 
 const PublicRoute = [
     {path : "/login", component: Login, layout: Fragment}
@@ -22,6 +23,7 @@ const PrivateRoute = [
     {path: "/absence", component: Absence, layout: MyLayout},
     {path: "/payment", component: Payment, layout: MyLayout},
     {path: "/donation", component: Donation, layout: MyLayout},
+    {path: "payment-event-detail/:id", component: PaymentEventDetail, layout: MyLayout},
 ]
 
 
