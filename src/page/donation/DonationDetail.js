@@ -1,66 +1,71 @@
 import { Space, Table, Tag } from "antd";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import AddDonationEvent from "./AddDonationEvent";
+import AddDonation from "./AddDonation";
+// import AddSojourn from "./AddSojourn";
 
 const initData = [
   {
-    tenkhoanthu: "Ung ho dong bao lu lut",
-    thuduoc: "10000000"
+    mahokhau: "1",
+    machuho: "1",
+    ten: "Phuc",
+    diachi: "Tho Xuan, Thanh Hoa",
   },
 ];
 
-const Donation = () => {
+const DonationDetail = () => {
   const navigate = useNavigate();
-
+  const {id} = useParams();
   const columns = [
     {
-      title: "Ten khoan dong gop",
-      dataIndex: "name",
-      width: "80%"
+      title: "Ho",
+      dataIndex: "department_name",
+      width: "30%"
     },
     {
-      title: "Thao tac",
-      render: (_, record) => (
-        <>
-          <Button
-            style={{ borderRadius: 20 , marginRight: 20}}
-            variant="contained"
-            fontSize="small"
-            onClick={()=> navigate(`/donation-detail/${record.id}`)}
-            
-          >
-            Detail
-          </Button>
-          {/* <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/> */}
-          {/* <DeleteIcon style={{cursor: "pointer", color:"red"}} /> */}
-        </>
-      ),
-      width: "20%"
+      title: "Ngay dong",
+      dataIndex : "date",
+      width: "40%"
     },
+    {
+        title: "So tien dong gop",
+        dataIndex : "price",
+        width: "30%"
+    },
+    // {
+    //   title: "Thao tac",
+    //   render: (_, record) => (
+    //     <>
+          
+    //       <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
+    //       <DeleteIcon style={{cursor: "pointer", color:"red"}} />
+    //     </>
+    //   ),
+    // },
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);
   const [render, setRender] = useState(0);
+
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  useEffect( ()=>{
-    axios.get("/donation/event/")
-    .then( (res)=>{
-      setData(res.data);
-    })
-    .catch( (err)=>{
-      console.error(err);
-    })
-  },[render])
+
+    useEffect(()=>{
+      axios.get("/donation/" + id)
+        .then( res =>{
+          console.log(res.data);
+          setData(res.data);
+        })
+    },[render])
 
   return (
     <div className="h-[100%] w-[100%] ">
@@ -79,9 +84,9 @@ const Donation = () => {
         dataSource={data}
         pagination={{ pageSize: 8 }}
       ></Table>
-      <AddDonationEvent open={open} handleClose={handleClose} handleOpen={handleOpen} render={render} setRender={setRender}/>
+      <AddDonation open={open} handleClose={handleClose} handleOpen={handleOpen} render={render} setRender={setRender}/>
     </div>
   );
 };
 
-export default Donation;
+export default DonationDetail;

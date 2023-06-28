@@ -2,82 +2,14 @@ import { Button } from "@mui/material";
 import { Table } from "antd";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import AddPerson from "./AddPerson";
 import DeadForm from "./DeadForm";
 import moment from "moment";
+import { Reorder } from "@mui/icons-material";
 
-const columns = [
-  {
-    title: "Ma Nhan Khau",
-    dataIndex: "manhankhau",
-    key: "manhankhau",
-  },
-  {
-    title: "Ho Ten",
-    dataIndex: "hoten",
-    key: "hoten",
-  },
-  {
-    title: "Bi Danh",
-    dataIndex: "bidanh",
-    key: "bidanh",
-  },
-  {
-    title: "CCCD",
-    dataIndex: "cccd",
-    key: "cccd",
-  },
-  {
-    title: "Ngay Cap",
-    dataIndex: "ngaycap",
-    key: "ngaycap",
-  },
-  {
-    title: "Noi Cap",
-    dataIndex: "noicap",
-    key: "noicap",
-  },
-  {
-    title: "Gioi tinh",
-    dataIndex: "gioitinh",
-    key: "gioitinh",
-  },
-  {
-    title: "Nghe nghiep",
-    dataIndex: "nghenghiep",
-    key: "ngheghiep",
-  },
-  {
-    title: "Dan toc",
-    dataIndex: "dantoc",
-    key: "dantoc",
-  },
-  {
-    title: "Nguyen quan",
-    dataIndex: "nguyenquan",
-    key: "nguyenquan",
-  },
-  {
-    title: "Ngay sinh",
-    dataIndex: "ngaysinh",
-    key: "ngaysinh",
-  },
-  {
-    title: "Noi lam viec",
-    dataIndex: "noilamviec",
-    key: "noilamviec",
-  },
-  {
-    title: "Ghi chu",
-    dataIndex: "ghichu",
-    key: "ghichu",
-  },
-  {
-    title: "Thao tac",
-    render: (_, record) => <EditIcon />,
-  },
-];
+
 
 const initData = [
   {
@@ -97,7 +29,6 @@ const initData = [
 ];
 
 const Person = () => {
-  // const [render, setRender] = useState(1);
   const currentDate = moment().format("DD-MM-YYYY");
   const [openAddForm, setOpenAddForm] = useState(false);
   const [openDeadForm, setOpenDeadForm] = useState(false);
@@ -111,6 +42,96 @@ const Person = () => {
   const handleCloseDeadForm = () => setOpenDeadForm(false);
   const [render, setRender] = useState(0);
   const [data, setData] = useState(initData);
+
+  const handleDelete = (record)=>{
+    console.log( record.key)
+    axios.delete(`/person/${record.key}`)
+    .then((res) => {
+        console.log(res.data);
+        setRender(render+1);
+      })
+      .catch( (err)=>{
+        console.log(err);
+      })
+  }
+  const columns = [
+    {
+      title: "Ma Nhan Khau",
+      dataIndex: "manhankhau",
+      key: "manhankhau",
+    },
+    {
+      title: "Ho Ten",
+      dataIndex: "hoten",
+      key: "hoten",
+    },
+    {
+      title: "Bi Danh",
+      dataIndex: "bidanh",
+      key: "bidanh",
+    },
+    {
+      title: "CCCD",
+      dataIndex: "cccd",
+      key: "cccd",
+    },
+    {
+      title: "Ngay Cap",
+      dataIndex: "ngaycap",
+      key: "ngaycap",
+    },
+    {
+      title: "Noi Cap",
+      dataIndex: "noicap",
+      key: "noicap",
+    },
+    {
+      title: "Gioi tinh",
+      dataIndex: "gioitinh",
+      key: "gioitinh",
+    },
+    {
+      title: "Nghe nghiep",
+      dataIndex: "nghenghiep",
+      key: "ngheghiep",
+    },
+    {
+      title: "Dan toc",
+      dataIndex: "dantoc",
+      key: "dantoc",
+    },
+    {
+      title: "Nguyen quan",
+      dataIndex: "nguyenquan",
+      key: "nguyenquan",
+    },
+    {
+      title: "Ngay sinh",
+      dataIndex: "ngaysinh",
+      key: "ngaysinh",
+    },
+    {
+      title: "Noi lam viec",
+      dataIndex: "noilamviec",
+      key: "noilamviec",
+    },
+    {
+      title: "Ghi chu",
+      dataIndex: "ghichu",
+      key: "ghichu",
+    },
+    {
+      title: "Thao tac",
+      render: (_, record) => (
+        <>
+          <EditIcon />
+          <DeleteIcon style={{ cursor: "pointer", color: "red" }} onClick={()=> handleDelete(record)} />
+        </>
+      ),
+      width: "7%"
+    },
+  ];
+  // const [render, setRender] = useState(1);
 
   useEffect(() => {
     axios

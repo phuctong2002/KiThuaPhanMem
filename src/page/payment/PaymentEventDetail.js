@@ -32,16 +32,16 @@ const PaymentEventDetail = () => {
       dataIndex : "date",
       width: "40%"
     },
-    {
-      title: "Thao tac",
-      render: (_, record) => (
-        <>
+    // {
+    //   title: "Thao tac",
+    //   render: (_, record) => (
+    //     <>
           
-          <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
-          <DeleteIcon style={{cursor: "pointer", color:"red"}} />
-        </>
-      ),
-    },
+    //       <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
+    //       <DeleteIcon style={{cursor: "pointer", color:"red"}} />
+    //     </>
+    //   ),
+    // },
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);

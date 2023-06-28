@@ -18,7 +18,26 @@ const initData = [
 
 const Absence = () => {
   const navigate = useNavigate();
-
+  const [data, setData] = useState(initData);
+  const [open, setOpen] = useState(false);
+  const [render, setRender] = useState(0);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleDelete = (record)=>{
+    console.log(record);
+    axios.delete(`/absence/${record.id}`)
+      .then((res)=>{
+        console.log(res);
+        setRender(render+1);
+      })
+      .catch( (err)=>{
+        console.log(err);
+      })
+  }
   const columns = [
     {
       title: "Nhan khau",
@@ -44,23 +63,15 @@ const Absence = () => {
       title: "Thao tac",
       render: (_, record) => (
         <>
-          <EditIcon
+          {/* <EditIcon
             style={{ cursor: "pointer", marginRight: 20, color: "#E4CCCC" }}
-          />
-          <DeleteIcon style={{ cursor: "pointer", color: "red" }} />
+          /> */}
+          <DeleteIcon style={{ cursor: "pointer", color: "red" }} onClick={()=> handleDelete(record)}/>
         </>
       ),
     },
   ];
-  const [data, setData] = useState(initData);
-  const [open, setOpen] = useState(false);
-  const [render, setRender] = useState(0);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   useEffect(() => {
     axios

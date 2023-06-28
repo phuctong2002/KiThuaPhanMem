@@ -44,7 +44,7 @@ const Sojourn = () => {
       render: (_, record) => (
         <>
           
-          <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
+          {/* <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/> */}
           <DeleteIcon style={{cursor: "pointer", color:"red"}} />
         </>
       ),

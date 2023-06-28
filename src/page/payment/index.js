@@ -22,18 +22,18 @@ const Payment = () => {
     {
       title: "Ten khoan thu",
       dataIndex: "name",
-      width: "25%",
+      width: "40%",
     },
     {
       title: "So tien",
       dataIndex: "aom",
-      width: "25%",
+      width: "40%",
     },
-    {
-      title: "Thu duoc",
-      dataIndex: "thuduoc",
-      width: "25%",
-    },
+    // {
+    //   title: "Thu duoc",
+    //   dataIndex: "thuduoc",
+    //   width: "27%",
+    // },
     {
       title: "Thao tac",
       render: (_, record) => (
@@ -49,13 +49,13 @@ const Payment = () => {
           >
             Detail
           </Button>
-          <EditIcon
+          {/* <EditIcon
             style={{ cursor: "pointer", marginRight: 20, color: "#E4CCCC" }}
-          />
-          <DeleteIcon style={{ cursor: "pointer", color: "red" }} />
+          /> */}
+          {/* <DeleteIcon style={{ cursor: "pointer", color: "red" }} /> */}
         </>
       ),
-      width: "25%",
+      width: "20%",
     },
   ];
   const [data, setData] = useState(initData);
