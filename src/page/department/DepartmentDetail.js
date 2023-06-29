@@ -82,18 +82,14 @@ const memeberColumn = [
 const changeColumn = [
   {
     title: "Ngay thoi doi",
-    dataIndex: "ngaythoi",
-    width: "30%"
+    dataIndex: "date",
+    width: "50%"
   },
-  {
-    title: "Loai thay doi",
-    dataIndex: "loaithaydoi",
-        width: "30%"
-  },
+  
   {
     title: "Noi dung thay doi",
-    dataIndex: "nodungthaydoi",
-    width: "30%"
+    dataIndex: "content",
+    width: "50%"
   }
 ]
 
@@ -107,7 +103,7 @@ const DepartmentDetail = () => {
   const [item, setItem] = useState(null);
   const [member, setMember] = useState(null);
   const [render, setRender] = useState(0);
-
+  const [change, setChange] = useState(null);
 
   const handleOpen = (item) => {
     setOpen(true);
@@ -137,7 +133,13 @@ const DepartmentDetail = () => {
     .catch( err => {
       console.log(err);
     })
+    axios.get(`/department/change/${id}`)
+      .then((res)=>{
+        console.log(res.data);
+        setChange(res.data);
+      })
   },[render])
+
   return (
     <Box className="" sx={{ flexGrow: 1 }}>
       <Grid className="px-[24px] pt-[0px] " container spacing={2}>
@@ -184,7 +186,7 @@ const DepartmentDetail = () => {
               <AddMember open={open} handleClose={handleClose} render={render} setRender={setRender}/>
             </TabPanel>
             <TabPanel value={value} index={1} className="h-[490px]">
-              <Table columns={changeColumn} pagination={{ pageSize: 4}}/>
+              <Table columns={changeColumn} dataSource={change} pagination={{ pageSize: 4}}/>
             </TabPanel>
           </Box>
         </Grid>

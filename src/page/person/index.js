@@ -121,6 +121,10 @@ const Person = () => {
       key: "ghichu",
     },
     {
+      title: "Thuong tru chuyen den",
+      dataIndex: "thuongtru"
+    },
+    {
       title: "Thao tac",
       render: (_, record) => (
         <>
@@ -152,7 +156,8 @@ const Person = () => {
             dantoc: item.nation,
             nguyenquan: item.home_town,
             ngaysinh: item.birth,
-            ghichu: item.ghichu,
+            ghichu: item.note,
+            thuongtru: item.address,
           };
         });
         setData(newData);

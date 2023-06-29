@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AddDepartment from "./AddDepartment";
 import { BiDetail } from "react-icons/bi";
+import EditDepartment from "./EditDepartment";
 
 const initData = [
   {
@@ -19,6 +20,30 @@ const initData = [
 const Department = () => {
   const navigate = useNavigate();
   const [render, setRender] = useState(0);
+  const [data, setData] = useState(initData);
+  const [open, setOpen] = useState(false);
+  const [item, setItem] = useState(null);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [openEdit, setOpenEdit] = useState(false);
+  const handleOpenEdit = () => {
+    setOpenEdit(true);
+  };
+  const handleCloseEdit = () => {
+      setOpenEdit(false);
+  };
+  const handleEdit = (record)=>{
+    setItem(record);
+    setOpenEdit(true);
+  }
+
+
+
   const handleDelete = (record) => {
     console.log(record.mahokhau);
     axios
@@ -63,6 +88,7 @@ const Department = () => {
           />
           <EditIcon
             style={{ cursor: "pointer", marginRight: 20, color: "#E4CCCC" }}
+            onClick={() => handleEdit(record)}
           />
           <DeleteIcon
             style={{ cursor: "pointer", color: "red" }}
@@ -73,14 +99,7 @@ const Department = () => {
       width: "20%",
     },
   ];
-  const [data, setData] = useState(initData);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   useEffect(() => {
     axios.get("/department/").then((res) => {
@@ -121,6 +140,14 @@ const Department = () => {
         handleOpen={handleOpen}
         render={render}
         setRender={setRender}
+      />
+      <EditDepartment
+        open={openEdit}
+        handleClose={handleCloseEdit}
+        handleOpen={handleOpenEdit}
+        render={render}
+        setRender={setRender}
+        item={item}
       />
     </div>
   );

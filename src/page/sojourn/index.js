@@ -18,7 +18,36 @@ const initData = [
 
 const Sojourn = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState(initData);
+  const [open, setOpen] = useState(false);
+  const [render, setRender] = useState(0);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+    useEffect(()=>{
+      axios.get("/sojourn/")
+        .then( res =>{
+          console.log(res.data);
+          setData(res.data);
+        })
+    },[render])
+
+  const handleDelete = (record)=>{
+    console.log(record.id);
+    axios.delete(`/sojourn/${record.id}`)
+      .then((res)=>{
+        console.log(res);
+        setRender(render + 1);
+      })
+      .catch( (err)=>{
+        console.log(err);
+      })
+  }
   const columns = [
     {
       title: "Chu ho",
@@ -45,29 +74,14 @@ const Sojourn = () => {
         <>
           
           {/* <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/> */}
-          <DeleteIcon style={{cursor: "pointer", color:"red"}} />
+          <DeleteIcon style={{cursor: "pointer", color:"red"}} 
+            onClick={()=> handleDelete(record)}
+          />
         </>
       ),
     },
   ];
-  const [data, setData] = useState(initData);
-  const [open, setOpen] = useState(false);
-  const [render, setRender] = useState(0);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-    useEffect(()=>{
-      axios.get("/sojourn/")
-        .then( res =>{
-          console.log(res.data);
-          setData(res.data);
-        })
-    },[render])
 
   return (
     <div className="h-[100%] w-[100%] ">

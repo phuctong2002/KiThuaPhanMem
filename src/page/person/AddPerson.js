@@ -38,6 +38,7 @@ export default function AddPerson({
   const birth = useRef(null);
   const home_town = useRef(null);
   const workspace = useRef(null);
+  const address = useRef(null);
 
   const handleAdd = ()=>{
     axios.post("/person", {
@@ -52,7 +53,8 @@ export default function AddPerson({
       "note": "",
       "id_card": id_card.current.value,
       "issued_by": issued_by.current.value,
-      "created_at": created_at.current.value
+      "created_at": created_at.current.value,
+      "address": address.current.value,
     })
     .then((res) => {
         console.log(res);
@@ -180,6 +182,13 @@ export default function AddPerson({
                   defaultValue="Ha Noi"
                   label="Noi lam viec"
                   inputRef={workspace}
+                />
+                <TextField
+                  style={{ width: "45%" }}
+                  id="outlined-required"
+                  label="Thường trú"
+                  defaultValue="Thanh Hóa"
+                  inputRef={address}
                 />
               </div>
             </Box>
