@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -22,38 +23,39 @@ const style = {
   padding: "24px",
 };
 
-export default function EditDepartment({ handleClose, open, handleOpen, render, setRender, item }) {
-    console.log(item);
+export default function BreakDepartment({ handleClose, open, handleOpen, render, setRender }) {
   const [id, setId] = useState('');
   const [person, setPerson] = useState([]);
-  const address = useRef(null);
+  const path = useParams();
+  const relation = useRef(null);
   const handleChange = (event) => {
     setId(event.target.value);
   };
 
   const handleAdd = ()=>{
-    axios.patch("/department/",{
-        id: item.mahokhau,
+    console.log( id);
+    console.log( relation.current.value);
+    console.log( path.id);
+    axios.post(`/department/break`,{
         person_id: id,
-        address: address.current.value,
+        address: relation.current.value,
     })
-      .then( (response) => {
+    .then( (res)=>{
         setRender(render + 1);
-        // console.log(response);
         handleClose();
-      })
-      .catch( (error)=>{
-        console.error(error)
-      })
+    })
+    .catch( (err)=>{
+        console.log(err);
+    })
+
   }
 
   useEffect( ()=>{
-    axios.get("/person/")
+    axios.get(`/department/relation/${path.id}`)
     .then((res) => {
         setPerson(res.data);
-        // console.log(res.data);
     })
-  },[])
+  },[render])
 
   return (
     <div>
@@ -70,10 +72,8 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
             variant="h6"
             component="h2"
           >
-            {/* <Close className="cursor-pointer hover:bg-[#EDEFF1]" onClick={handleClose} /> */}
-            <h1 className="text-[24px] font-medium">Thay doi thong tin ho khau</h1>
+            <h1 className="text-[24px] font-medium">Tach ho</h1>
           </Typography>
-
           <Typography>
             <Box
               component="form"
@@ -85,18 +85,18 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Ho ten chu ho moi</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={id}
-                    label="Name"
+                    label="Ho ten chu ho moi"
                     onChange={handleChange}
                   >
                     {person.map((item, index) => {
                       return (
-                        <MenuItem key={index} value={item.id}>
-                          {item.name}
+                        <MenuItem key={index} value={item.person_id}>
+                          {item.person_name}
                         </MenuItem>
                       );
                     })}
@@ -109,7 +109,7 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
                   id="outlined-required"
                   label="Dia chi"
                   defaultValue=""
-                  inputRef={address}
+                  inputRef={relation}
                 />
               </div>
             </Box>
@@ -134,7 +134,7 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
               variant="contained"
               onClick={handleAdd}
             >
-              Confirm
+              Change
             </Button>
           </Typography>
         </Box>

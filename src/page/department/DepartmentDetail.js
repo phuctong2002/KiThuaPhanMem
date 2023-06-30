@@ -13,6 +13,7 @@ import { Table } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import AddMember from "./AddMember";
+import BreakDepartment from "./BreakDepartment";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -100,14 +101,20 @@ const DepartmentDetail = () => {
   const [value, setValue] = useState(0);
 
   const [open, setOpen] = useState(false);
-  const [item, setItem] = useState(null);
+  // const [item, setItem] = useState(null);
   const [member, setMember] = useState(null);
   const [render, setRender] = useState(0);
   const [change, setChange] = useState(null);
+  const [openBreaker, setOpenBreaker] = useState(false);
 
+  const handleCloseBreaker = () => setOpenBreaker(false);
+  const handleOpenBeaker = () => {
+    setOpenBreaker(true);
+    // setItem(item);
+  };
   const handleOpen = (item) => {
     setOpen(true);
-    setItem(item);
+    // setItem(item);
   };
 
   const handleClose = () => setOpen(false);
@@ -176,6 +183,7 @@ const DepartmentDetail = () => {
                   // onClick={handleOpen}
                   style={{ width: 120, borderRadius: 20 }}
                   variant="contained"
+                  onClick={handleOpenBeaker}
                 >
                   Tach ho
                 </Button>
@@ -184,6 +192,7 @@ const DepartmentDetail = () => {
             <TabPanel className={`h-[490px]`} value={value} index={0}>
               <Table columns={memeberColumn} dataSource={member} pagination={{ pageSize: 4}}/>
               <AddMember open={open} handleClose={handleClose} render={render} setRender={setRender}/>
+              <BreakDepartment open={openBreaker} handleClose={handleCloseBreaker} render={render} setRender={setRender}/>
             </TabPanel>
             <TabPanel value={value} index={1} className="h-[490px]">
               <Table columns={changeColumn} dataSource={change} pagination={{ pageSize: 4}}/>
