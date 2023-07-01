@@ -66,7 +66,7 @@ export default function DeadForm({ handleClose, open, handleOpen, person }) {
             component="h2"
           >
             {/* <Close className="cursor-pointer hover:bg-[#EDEFF1]" onClick={handleClose} /> */}
-            <h1 className="text-[24px] font-medium">Khai tu</h1>
+            <h1 className="text-[24px] font-medium">Khai tử</h1>
           </Typography>
 
           <Typography>
@@ -80,12 +80,12 @@ export default function DeadForm({ handleClose, open, handleOpen, person }) {
             >
               <div className="flex justify-center">
                 <FormControl style={{width: "90%"}}>
-                  <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Họ tên</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={id}
-                    label="Name"
+                    label="Họ tên"
                     onChange={handleChange}
                   >
                     {
@@ -103,7 +103,7 @@ export default function DeadForm({ handleClose, open, handleOpen, person }) {
                   type="date"
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Ngay mat"
+                  label="Ngày mất"
                   defaultValue="2002-01-01"
                   inputRef={date_of_death}
 
@@ -113,7 +113,7 @@ export default function DeadForm({ handleClose, open, handleOpen, person }) {
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Li do"
+                  label="Lí do"
                   defaultValue=""
                   inputRef={reason}
                 />

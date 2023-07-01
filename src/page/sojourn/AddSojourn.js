@@ -31,7 +31,6 @@ export default function AddSojourn({ handleClose, open, handleOpen, render, setR
   const reason = useRef(null);
   const handleChange = (event) => {
     setId(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleAdd = ()=>{
@@ -94,12 +93,12 @@ export default function AddSojourn({ handleClose, open, handleOpen, render, setR
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Chu ho tam tru</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Chủ hộ tạm trú</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={id}
-                    label="Chu ho tam tru"
+                    label="Chủ hộ tạm trú"
                     onChange={handleChange}
                   >
                     {department.map((item, index) => {
@@ -116,7 +115,7 @@ export default function AddSojourn({ handleClose, open, handleOpen, render, setR
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Ho ten"
+                  label="Họ tên"
                   defaultValue=""
                   inputRef={name}
                 />
@@ -126,7 +125,7 @@ export default function AddSojourn({ handleClose, open, handleOpen, render, setR
                   type="date"
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Ngay den"
+                  label="Ngày đến"
                   defaultValue="2022-01-01"
                   inputRef={start}
                 />
@@ -136,7 +135,7 @@ export default function AddSojourn({ handleClose, open, handleOpen, render, setR
                   type="date"
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Ngay den"
+                  label="Ngày đi"
                   defaultValue="2022-01-01"
                   inputRef={end}
                 />
@@ -145,7 +144,7 @@ export default function AddSojourn({ handleClose, open, handleOpen, render, setR
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Li do"
+                  label="Lí do"
                   defaultValue="Li do"
                   inputRef={reason}
                 />

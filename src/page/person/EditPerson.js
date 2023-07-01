@@ -18,14 +18,13 @@ const style = {
   padding: "24px",
 };
 
-export default function AddPerson({
+export default function EditPerson({
   handleClose,
   open,
-  handleOpen,
   render,
-  setRender
+  setRender,
+  person,
 }) {
-  
   const name = useRef(null);
   const alias = useRef(null);
   const id_card = useRef(null);
@@ -39,30 +38,33 @@ export default function AddPerson({
   const workspace = useRef(null);
   const address = useRef(null);
 
-  const handleAdd = ()=>{
-    axios.post("/person", {
-      "name": name.current.value,
-      "birth": birth.current.value,
-      "alias": alias.current.value,
-      "gender": gender.current.value,
-      "home_town" :home_town.current.value,
-      "nation": nation.current.value,
-      "job": job.current.value,
-      "workspace": workspace.current.value,
-      "note": "",
-      "id_card": id_card.current.value,
-      "issued_by": issued_by.current.value,
-      "created_at": created_at.current.value,
-      "address": address.current.value,
-    })
-    .then((res) => {
+  const handleAdd = () => {
+    axios
+      .patch(`/person/${person.manhankhau}`, {
+        id: person.manhankhau,
+        name: name.current.value,
+        birth: birth.current.value,
+        alias: alias.current.value,
+        gender: gender.current.value,
+        home_town: home_town.current.value,
+        nation: nation.current.value,
+        job: job.current.value,
+        workspace: workspace.current.value,
+        note: "",
+        id_card: id_card.current.value,
+        issued_by: issued_by.current.value,
+        created_at: created_at.current.value,
+        address: address.current.value,
+      })
+      .then((res) => {
         console.log(res);
         setRender(render + 1);
         handleClose();
-      }).then( (response)=>{
-        console.log("oke nhe");
       })
-  }
+      .then((response) => {
+        console.log("oke nhe");
+      });
+  };
   return (
     <div>
       <Modal
@@ -78,7 +80,7 @@ export default function AddPerson({
             variant="h6"
             component="h2"
           >
-            <h1 className="text-[24px] font-medium">Them nhan khau</h1>
+            <h1 className="text-[24px] font-medium">Chỉnh sửa thông tin nhân khẩu</h1>
           </Typography>
           <Typography>
             <Box
@@ -94,14 +96,14 @@ export default function AddPerson({
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Họ tên"
-                  defaultValue="Lê Văn A"
+                  defaultValue={person.hoten}
                   inputRef={name}
                 />
                 <TextField
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Bí danh"
-                  defaultValue="LA"
+                  defaultValue={person.bidanh}
                   inputRef={alias}
                 />
               </div>
@@ -110,7 +112,7 @@ export default function AddPerson({
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="CCCD"
-                  defaultValue="123456789"
+                  defaultValue={person.cccd}
                   inputRef={id_card}
                 />
                 <TextField
@@ -119,7 +121,7 @@ export default function AddPerson({
                   id="outlined-required"
                   label="Ngày cấp"
                   inputRef={created_at}
-                  defaultValue="2023-06-25"
+                  defaultValue={person.ngaycap}
                 />
               </div>
               <div className="flex justify-between">
@@ -127,14 +129,14 @@ export default function AddPerson({
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Nơi cấp"
-                  defaultValue="Thanh Hóa"
+                  defaultValue={person.noicap}
                   inputRef={issued_by}
                 />
                 <TextField
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Giới tính"
-                  defaultValue="Nam"
+                  defaultValue={person.gioitinh}
                   inputRef={gender}
                 />
               </div>
@@ -143,14 +145,14 @@ export default function AddPerson({
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Nghề nghiệp"
-                  defaultValue="Sinh viên"
+                  defaultValue={person.nghenghiep}
                   inputRef={job}
                 />
                 <TextField
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Dân tộc"
-                  defaultValue="Kinh"
+                  defaultValue={person.dantoc}
                   inputRef={nation}
                 />
               </div>
@@ -159,7 +161,7 @@ export default function AddPerson({
                   type="date"
                   style={{ width: "45%" }}
                   id="outlined-required"
-                  defaultValue="2023-06-25"
+                  defaultValue={person.ngaysinh}
                   label="Ngày sinh"
                   inputRef={birth}
                 />
@@ -167,7 +169,7 @@ export default function AddPerson({
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Nguyên quán"
-                  defaultValue="Thanh Hóa"
+                  defaultValue={person.nguyenquan}
                   inputRef={home_town}
                 />
               </div>
@@ -175,7 +177,7 @@ export default function AddPerson({
                 <TextField
                   style={{ width: "45%" }}
                   id="outlined-required"
-                  defaultValue="Ha Noi"
+                  defaultValue={person.noilamviec}
                   label="Nơi làm việc"
                   inputRef={workspace}
                 />
@@ -183,7 +185,7 @@ export default function AddPerson({
                   style={{ width: "45%" }}
                   id="outlined-required"
                   label="Thường trú"
-                  defaultValue="Thanh Hóa"
+                  defaultValue={person.thuongtru}
                   inputRef={address}
                 />
               </div>
@@ -209,7 +211,7 @@ export default function AddPerson({
               variant="contained"
               onClick={handleAdd}
             >
-              Add
+                Change
             </Button>
           </Typography>
         </Box>

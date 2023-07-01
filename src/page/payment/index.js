@@ -1,10 +1,8 @@
-import { Space, Table, Tag } from "antd";
+import { Table } from "antd";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import AddEvent from "./AddEvent";
 
 const initData = [
@@ -20,22 +18,17 @@ const Payment = () => {
 
   const columns = [
     {
-      title: "Ten khoan thu",
+      title: "Tên khoản thu",
       dataIndex: "name",
       width: "40%",
     },
     {
-      title: "So tien",
+      title: "Số tiền",
       dataIndex: "aom",
       width: "40%",
     },
-    // {
-    //   title: "Thu duoc",
-    //   dataIndex: "thuduoc",
-    //   width: "27%",
-    // },
     {
-      title: "Thao tac",
+      title: "Hành động",
       render: (_, record) => (
         <>
           <Button
@@ -49,10 +42,6 @@ const Payment = () => {
           >
             Detail
           </Button>
-          {/* <EditIcon
-            style={{ cursor: "pointer", marginRight: 20, color: "#E4CCCC" }}
-          /> */}
-          {/* <DeleteIcon style={{ cursor: "pointer", color: "red" }} /> */}
         </>
       ),
       width: "20%",

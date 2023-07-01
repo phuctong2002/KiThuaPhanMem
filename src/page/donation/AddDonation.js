@@ -68,8 +68,9 @@ export default function AddDonation({
   }, [render]);
 
   return (
-    <div>
+    <div className="rounded-[20px]">
       <Modal
+        className="rounded-[20px]"
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -82,7 +83,7 @@ export default function AddDonation({
             variant="h6"
             component="h2"
           >
-            <h1 className="text-[24px] font-medium">Dong tien</h1>
+            <h1 className="text-[24px] font-medium">Đóng tiền </h1>
           </Typography>
 
           <Typography>
@@ -96,13 +97,13 @@ export default function AddDonation({
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Ho</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Hộ gia đình</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={dpid}
                     inputRef={name}
-                    label="Ho"
+                    label="Hộ gia đình"
                     onChange={handleChange}
                   >
                     {department.map((item, index) => {
@@ -119,7 +120,7 @@ export default function AddDonation({
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="So tien dong gop"
+                  label="Số tiền đóng góp"
                   defaultValue=""
                   inputRef={aom}
                 />

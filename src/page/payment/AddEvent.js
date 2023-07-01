@@ -52,10 +52,8 @@ export default function AddEvent({ handleClose, open, handleOpen, render, setRen
             variant="h6"
             component="h2"
           >
-            {/* <Close className="cursor-pointer hover:bg-[#EDEFF1]" onClick={handleClose} /> */}
             <h1 className="text-[24px] font-medium">Thêm khoản thu</h1>
           </Typography>
-
           <Typography>
             <Box
               component="form"
@@ -78,7 +76,7 @@ export default function AddEvent({ handleClose, open, handleOpen, render, setRen
                 <TextField
                 style={{ width: "90%" , marginTop: 40 }}
                   id="outlined-number"
-                  label="So tien"
+                  label="Số tiền"
                   type="number"
                   inputRef={aom}
                   InputLabelProps={{

@@ -39,7 +39,6 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
     })
       .then( (response) => {
         setRender(render + 1);
-        // console.log(response);
         handleClose();
       })
       .catch( (error)=>{
@@ -71,7 +70,7 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
             component="h2"
           >
             {/* <Close className="cursor-pointer hover:bg-[#EDEFF1]" onClick={handleClose} /> */}
-            <h1 className="text-[24px] font-medium">Thay doi thong tin ho khau</h1>
+            <h1 className="text-[24px] font-medium">Thay đổi thông tin hộ khẩu</h1>
           </Typography>
 
           <Typography>
@@ -85,7 +84,7 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Tên chủ hộ</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -107,7 +106,7 @@ export default function EditDepartment({ handleClose, open, handleOpen, render, 
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Dia chi"
+                  label="Địa chỉ"
                   defaultValue=""
                   inputRef={address}
                 />

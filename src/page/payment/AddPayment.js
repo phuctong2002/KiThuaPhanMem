@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -17,7 +16,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  height: 300,
+  height: 280,
   bgcolor: "background.paper",
   p: 24,
   padding: "24px",
@@ -73,7 +72,7 @@ export default function AddPayment({ handleClose, open, handleOpen, render, setR
             variant="h6"
             component="h2"
           >
-            <h1 className="text-[24px] font-medium">Dong tien</h1>
+            <h1 className="text-[24px] font-medium">Đóng tiền</h1>
           </Typography>
 
           <Typography>
@@ -87,13 +86,13 @@ export default function AddPayment({ handleClose, open, handleOpen, render, setR
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Ho</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Hộ gia đình</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={dpid}
                     inputRef={name}
-                    label="Ho"
+                    label="Hộ gia đình"
                     onChange={handleChange}
                   >
                     {department.map((item, index) => {

@@ -86,12 +86,12 @@ export default function AddDepartment({ handleClose, open, handleOpen, render, s
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Họ tên</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={id}
-                    label="Name"
+                    label="Họ tên"
                     onChange={handleChange}
                   >
                     {person.map((item, index) => {
@@ -108,7 +108,7 @@ export default function AddDepartment({ handleClose, open, handleOpen, render, s
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Dia chi"
+                  label="Địa chỉ"
                   defaultValue=""
                   inputRef={address}
                 />

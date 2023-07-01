@@ -1,10 +1,8 @@
-import { Space, Table, Tag } from "antd";
+import {  Table } from "antd";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import AddSojourn from "./AddSojourn";
 
 const initData = [
@@ -17,7 +15,6 @@ const initData = [
 ];
 
 const Sojourn = () => {
-  const navigate = useNavigate();
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);
   const [render, setRender] = useState(0);
@@ -50,30 +47,28 @@ const Sojourn = () => {
   }
   const columns = [
     {
-      title: "Chu ho",
+      title: "Chủ hộ",
       dataIndex: "person_of_department",
     },
     {
-      title: "Ho ten nguoi tam tru",
+      title: "Họ tên người tạm trú",
       dataIndex : "name",
     },
     {
-      title: "Tu ngay",
+      title: "Từ ngày",
       dataIndex: "start_date",
     },{
-      title: "Den ngay",
+      title: "Đến ngày",
       dataIndex: "end_date",
     },
     {
-      title: "Li do", 
+      title: "Lí do", 
       dataIndex: "reason",
     },
     {
-      title: "Thao tac",
+      title: "Hành động",
       render: (_, record) => (
         <>
-          
-          {/* <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/> */}
           <DeleteIcon style={{cursor: "pointer", color:"red"}} 
             onClick={()=> handleDelete(record)}
           />

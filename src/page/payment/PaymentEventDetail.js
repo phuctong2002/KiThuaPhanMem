@@ -1,13 +1,9 @@
-import { Space, Table, Tag } from "antd";
+import { Table } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import AddPayment from "./AddPayment";
-// import AddSojourn from "./AddSojourn";
 
 const initData = [
   {
@@ -19,29 +15,18 @@ const initData = [
 ];
 
 const PaymentEventDetail = () => {
-  const navigate = useNavigate();
   const {id} = useParams();
   const columns = [
     {
-      title: "Ho",
+      title: "Hộ gia đình",
       dataIndex: "department_name",
       width: "40%"
     },
     {
-      title: "Ngay dong",
+      title: "Ngày đóng",
       dataIndex : "date",
       width: "40%"
     },
-    // {
-    //   title: "Thao tac",
-    //   render: (_, record) => (
-    //     <>
-          
-    //       <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
-    //       <DeleteIcon style={{cursor: "pointer", color:"red"}} />
-    //     </>
-    //   ),
-    // },
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);

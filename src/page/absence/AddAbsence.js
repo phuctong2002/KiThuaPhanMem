@@ -79,7 +79,7 @@ export default function AddAbsence({ handleClose, open, handleOpen, render, setR
             variant="h6"
             component="h2"
           >
-            <h1 className="text-[24px] font-medium">Them tam vang</h1>
+            <h1 className="text-[24px] font-medium">Khai báo tạm vắng</h1>
           </Typography>
           <Typography>
             <Box
@@ -92,12 +92,12 @@ export default function AddAbsence({ handleClose, open, handleOpen, render, setR
             >
               <div className="flex justify-center mt-[20px]">
                 <FormControl style={{ width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Ho ten</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Họ tên</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={id}
-                    label="Ho ten"
+                    label="Họ tên"
                     onChange={handleChange}
                   >
                     {department.map((item, index) => {
@@ -114,7 +114,7 @@ export default function AddAbsence({ handleClose, open, handleOpen, render, setR
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Dia diem"
+                  label="Địa điểm"
                   defaultValue=""
                   inputRef={place}
                 />
@@ -124,7 +124,7 @@ export default function AddAbsence({ handleClose, open, handleOpen, render, setR
                   type="date"
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Ngay den"
+                  label="Ngày đến"
                   defaultValue="2022-01-01"
                   inputRef={start}
                 />
@@ -134,7 +134,7 @@ export default function AddAbsence({ handleClose, open, handleOpen, render, setR
                   type="date"
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Ngay den"
+                  label="Ngày đi"
                   defaultValue="2022-01-01"
                   inputRef={end}
                 />
@@ -143,7 +143,7 @@ export default function AddAbsence({ handleClose, open, handleOpen, render, setR
                 <TextField
                   style={{ width: "90%" }}
                   id="outlined-required"
-                  label="Li do"
+                  label="Lí do"
                   defaultValue="Li do"
                   inputRef={reason}
                 />

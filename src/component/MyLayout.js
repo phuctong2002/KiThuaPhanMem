@@ -19,10 +19,10 @@ function getItem(label, key, icon, route) {
 }
 
 const items = [
-  getItem("Ho Khau", "1", <BsFillHouseFill/>, "/"),
-  getItem("Nhan Khau", "2", <BsFillPeopleFill />, "/person"),
-  getItem("Tam tru", "3", <BsHouseAddFill/>, "/sojourn"),
-  getItem("Tam vang", "4", <BsHouseDashFill />, "/absence"),
+  getItem("Hộ khẩu", "1", <BsFillHouseFill/>, "/"),
+  getItem("Nhân khẩu", "2", <BsFillPeopleFill />, "/person"),
+  getItem("Tạm trú", "3", <BsHouseAddFill/>, "/sojourn"),
+  getItem("Tạm vắng", "4", <BsHouseDashFill />, "/absence"),
   getItem("Thu phí", "5", <HiReceiptTax />, "/payment"),
   getItem("Đóng góp", "6", <HiReceiptTax />, "/donation"),
 ];
@@ -51,23 +51,16 @@ const MyLayout = ({ children }) => {
         onCollapse={(value) => setCollapsed(value)}
         style={{height: "100vh", backgroundColor:"#cfdedb"}}
       >
-        {/* <div
-          style={{
-            height: 32,
-            margin: 16,
-          }}
-        /> */}
         <div className="h-[60px] mb-[20px] leading-[60px] font-medium text-[28px] text-[#0D062D] text-center"><h1>{ collapsed? "Q" : "QLDC"}</h1></div>
         <Menu
-          // theme="dark"
         style={{backgroundColor:"#cfdedb"}}
-
           defaultSelectedKeys={["0"]}
           mode="inline"
         >
           {items.map((item, index) => {
             return (
-              <Menu.Item
+              <Menu.Item 
+                className="text-[16px]"
                 key={index}
                 icon={item.icon}
                 onClick={() => navigate(item.route)}

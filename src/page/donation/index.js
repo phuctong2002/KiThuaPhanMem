@@ -19,12 +19,12 @@ const Donation = () => {
 
   const columns = [
     {
-      title: "Ten khoan dong gop",
+      title: "Tên khoản đóng góp",
       dataIndex: "name",
       width: "80%"
     },
     {
-      title: "Thao tac",
+      title: "Hành động",
       render: (_, record) => (
         <>
           <Button
@@ -32,12 +32,9 @@ const Donation = () => {
             variant="contained"
             fontSize="small"
             onClick={()=> navigate(`/donation-detail/${record.id}`)}
-            
           >
             Detail
           </Button>
-          {/* <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/> */}
-          {/* <DeleteIcon style={{cursor: "pointer", color:"red"}} /> */}
         </>
       ),
       width: "20%"

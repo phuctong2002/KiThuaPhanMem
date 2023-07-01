@@ -23,30 +23,20 @@ const DonationDetail = () => {
   const {id} = useParams();
   const columns = [
     {
-      title: "Ho",
+      title: "Chủ hộ",
       dataIndex: "department_name",
       width: "30%"
     },
     {
-      title: "Ngay dong",
+      title: "Ngày đóng",
       dataIndex : "date",
       width: "40%"
     },
     {
-        title: "So tien dong gop",
+        title: "Số tiền đóng góp",
         dataIndex : "price",
         width: "30%"
     },
-    // {
-    //   title: "Thao tac",
-    //   render: (_, record) => (
-    //     <>
-          
-    //       <EditIcon style={{cursor:"pointer",marginRight:20,color: "#E4CCCC"}}/>
-    //       <DeleteIcon style={{cursor: "pointer", color:"red"}} />
-    //     </>
-    //   ),
-    // },
   ];
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);

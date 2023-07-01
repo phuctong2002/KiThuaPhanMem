@@ -40,27 +40,27 @@ const Absence = () => {
   }
   const columns = [
     {
-      title: "Nhan khau",
+      title: "Nhân khẩu",
       dataIndex: "person_name",
     },
     {
-      title: "Dia diem",
+      title: "Địa điểm",
       dataIndex: "place",
     },
     {
-      title: "Ngay bat dau",
+      title: "Ngày bắt đầu",
       dataIndex: "start_date",
     },
     {
-      title: "Ngay ket thuc",
+      title: "Ngày kết thúc",
       dataIndex: "end_date",
     },
     {
-      title: "Li do",
+      title: "Lí do",
       dataIndex: "reason",
     },
     {
-      title: "Thao tac",
+      title: "Hành động",
       render: (_, record) => (
         <>
           {/* <EditIcon

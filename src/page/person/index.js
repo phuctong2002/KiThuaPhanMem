@@ -6,8 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import AddPerson from "./AddPerson";
 import DeadForm from "./DeadForm";
-import moment from "moment";
-import { Reorder } from "@mui/icons-material";
+import EditPerson from "./EditPerson";
 
 
 
@@ -29,7 +28,6 @@ const initData = [
 ];
 
 const Person = () => {
-  const currentDate = moment().format("DD-MM-YYYY");
   const [openAddForm, setOpenAddForm] = useState(false);
   const [openDeadForm, setOpenDeadForm] = useState(false);
   const handleOpen = () => {
@@ -42,6 +40,12 @@ const Person = () => {
   const handleCloseDeadForm = () => setOpenDeadForm(false);
   const [render, setRender] = useState(0);
   const [data, setData] = useState(initData);
+  const [item, setItem] = useState(initData);
+
+  const [openEdit, setOpenEdit] = useState(false);
+  const handleOpenEdit = () => setOpenEdit(true);
+  const handleCloseEdit = () => setOpenEdit(false);
+
 
   const handleDelete = (record)=>{
     console.log( record.key)
@@ -56,17 +60,17 @@ const Person = () => {
   }
   const columns = [
     {
-      title: "Ma Nhan Khau",
+      title: "Mã nhân khẩu",
       dataIndex: "manhankhau",
       key: "manhankhau",
     },
     {
-      title: "Ho Ten",
+      title: "Họ tên",
       dataIndex: "hoten",
       key: "hoten",
     },
     {
-      title: "Bi Danh",
+      title: "Bí danh",
       dataIndex: "bidanh",
       key: "bidanh",
     },
@@ -76,67 +80,70 @@ const Person = () => {
       key: "cccd",
     },
     {
-      title: "Ngay Cap",
+      title: "Ngày cấp",
       dataIndex: "ngaycap",
       key: "ngaycap",
     },
     {
-      title: "Noi Cap",
+      title: "Nơi cấp",
       dataIndex: "noicap",
       key: "noicap",
     },
     {
-      title: "Gioi tinh",
+      title: "Giới tính",
       dataIndex: "gioitinh",
       key: "gioitinh",
     },
     {
-      title: "Nghe nghiep",
+      title: "Nghề nghiệp",
       dataIndex: "nghenghiep",
       key: "ngheghiep",
     },
     {
-      title: "Dan toc",
+      title: "Dân tộc",
       dataIndex: "dantoc",
       key: "dantoc",
     },
     {
-      title: "Nguyen quan",
+      title: "Nguyên quán",
       dataIndex: "nguyenquan",
       key: "nguyenquan",
     },
     {
-      title: "Ngay sinh",
+      title: "Ngày sinh",
       dataIndex: "ngaysinh",
       key: "ngaysinh",
     },
     {
-      title: "Noi lam viec",
+      title: "Nơi làm việc",
       dataIndex: "noilamviec",
       key: "noilamviec",
     },
     {
-      title: "Ghi chu",
+      title: "Ghi chú",
       dataIndex: "ghichu",
       key: "ghichu",
     },
     {
-      title: "Thuong tru chuyen den",
+      title: "Thường trú chuyển đến",
       dataIndex: "thuongtru"
     },
     {
-      title: "Thao tac",
+      title: "Hành động",
       render: (_, record) => (
         <>
-          <EditIcon />
+          <EditIcon style={{ cursor: "pointer" }} onClick={()=> handleEdit(record)}/>
           <DeleteIcon style={{ cursor: "pointer", color: "red" }} onClick={()=> handleDelete(record)} />
         </>
       ),
       width: "7%"
     },
   ];
-  // const [render, setRender] = useState(1);
-
+  const handleEdit = (record)=>{
+    setItem(record);
+    setOpenEdit(true);
+    console.log(record);
+  }
   useEffect(() => {
     axios
       .get("/person/")
@@ -150,7 +157,7 @@ const Person = () => {
             bidanh: item.alias,
             noilamviec: item.workspace,
             cccd: item.id_card,
-            ngaycap: item.create_at,
+            ngaycap: item.created_at,
             noicap: item.issued_by,
             nghenghiep: item.job,
             dantoc: item.nation,
@@ -199,6 +206,14 @@ const Person = () => {
         handleOpen={handleOpenDeadForm}
         person={data}
       ></DeadForm>
+      <EditPerson 
+        handleClose={handleCloseEdit}
+        open={ openEdit}
+        handleOpen={handleOpenEdit}
+        person={item}
+        render={render}
+        setRender={setRender}
+      />
     </div>
   );
 };

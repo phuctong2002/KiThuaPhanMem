@@ -58,43 +58,40 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const memeberColumn = [
   {
-    title: "Ma ho khau",
+    title: "Mã hộ khẩu",
     dataIndex: "mahokhau",
     width: "25%"
   },
   {
-    title: "Ma nhan khau",
+    title: "Mã nhân khẩu",
     dataIndex: "manhankhau",
     width: "25%"
   },
   {
-    title: "Ten",
+    title: "Họ tên",
     dataIndex: "ten",
     width: "25%",
   },
   {
-    title: "Quan he",
+    title: "Quan hệ",
     dataIndex: "quanhe",
     width: "25%",
   }
-
 ]
 
 const changeColumn = [
   {
-    title: "Ngay thoi doi",
+    title: "Ngày thay đổi",
     dataIndex: "date",
     width: "50%"
   },
   
   {
-    title: "Noi dung thay doi",
+    title: "Nội dung thay đổi",
     dataIndex: "content",
     width: "50%"
   }
 ]
-
-
 
 const DepartmentDetail = () => {
   const {id} = useParams();
@@ -110,11 +107,9 @@ const DepartmentDetail = () => {
   const handleCloseBreaker = () => setOpenBreaker(false);
   const handleOpenBeaker = () => {
     setOpenBreaker(true);
-    // setItem(item);
   };
   const handleOpen = (item) => {
     setOpen(true);
-    // setItem(item);
   };
 
   const handleClose = () => setOpen(false);
@@ -177,15 +172,14 @@ const DepartmentDetail = () => {
                   style={{marginRight: 20, width: 120, borderRadius: 20 }}
                   variant="contained"
                 >
-                  Them tv
+                  Thêm TV
                 </Button>
                 <Button
-                  // onClick={handleOpen}
                   style={{ width: 120, borderRadius: 20 }}
                   variant="contained"
                   onClick={handleOpenBeaker}
                 >
-                  Tach ho
+                  Tách hộ
                 </Button>
               </div>
             </Box>

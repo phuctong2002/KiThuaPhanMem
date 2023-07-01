@@ -58,25 +58,25 @@ const Department = () => {
   };
   const columns = [
     {
-      title: "Ma ho khau",
+      title: "Mã hộ khẩu",
       dataIndex: "mahokhau",
       key: "mahokhau",
       width: "25%",
     },
     {
-      title: "Chu ho",
+      title: "Tên chủ hộ",
       dataIndex: "ten",
       key: "ten",
       width: "25%",
     },
     {
-      title: "Dia chi",
+      title: "Địa chỉ",
       dataIndex: "diachi",
       key: "diachi",
       width: "25%",
     },
     {
-      title: "Thao tac",
+      title: "Hành động",
       render: (_, record) => (
         <>
           <BiDetail
