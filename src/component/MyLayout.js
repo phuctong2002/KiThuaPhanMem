@@ -1,12 +1,12 @@
 import {
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb,Button, Layout, Menu, theme } from "antd";
+import { Button, Layout, Menu, theme } from "antd";
 import { useState } from "react";
 import {BsFillHouseFill, BsFillPeopleFill, BsHouseAddFill, BsHouseDashFill} from "react-icons/bs"
 import {HiReceiptTax} from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 
 function getItem(label, key, icon, route) {

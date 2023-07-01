@@ -1,13 +1,9 @@
-import { Space, Table, Tag } from "antd";
+import { Table } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import AddDonation from "./AddDonation";
-// import AddSojourn from "./AddSojourn";
 
 const initData = [
   {
@@ -19,7 +15,6 @@ const initData = [
 ];
 
 const DonationDetail = () => {
-  const navigate = useNavigate();
   const {id} = useParams();
   const columns = [
     {

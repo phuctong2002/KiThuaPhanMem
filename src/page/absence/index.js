@@ -1,10 +1,8 @@
-import { Space, Table, Tag } from "antd";
+import { Table } from "antd";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import AddAbsence from "./AddAbsence";
 
 const initData = [
@@ -17,7 +15,6 @@ const initData = [
 ];
 
 const Absence = () => {
-  const navigate = useNavigate();
   const [data, setData] = useState(initData);
   const [open, setOpen] = useState(false);
   const [render, setRender] = useState(0);
