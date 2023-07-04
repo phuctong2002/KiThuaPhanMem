@@ -10,15 +10,15 @@ const { default: Payment } = require("../page/payment");
 const { default: Donation } = require("../page/donation");
 const {default: PaymentEventDetail} = require("../page/payment/PaymentEventDetail");
 const { default: DonationDetail } = require("../page/donation/DonationDetail");
+const { default: Statistic } = require("../page/statistic");
 
 const PublicRoute = [
     {path : "/login", component: Login, layout: Fragment}
 ]
 
 const PrivateRoute = [
-    // {path: "/", component: Fragment, layout: MyLayout},
     {path: "/person", component: Person, layout: MyLayout},
-    {path : "/", component: Department, layout: MyLayout},
+    {path : "/department", component: Department, layout: MyLayout},
     {path: "/department/:id", component: DepartmentDetail, layout: MyLayout},
     {path: "/sojourn", component: Sojourn, layout: MyLayout},
     {path: "/absence", component: Absence, layout: MyLayout},
@@ -26,6 +26,7 @@ const PrivateRoute = [
     {path: "/donation", component: Donation, layout: MyLayout},
     {path: "payment-event-detail/:id", component: PaymentEventDetail, layout: MyLayout},
     {path: "donation-detail/:id", component: DonationDetail, layout: MyLayout},
+    {path: "/", component: Statistic, layout: MyLayout},
 ]
 
 
