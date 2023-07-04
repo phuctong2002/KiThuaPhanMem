@@ -82,7 +82,7 @@ const Department = () => {
           <BiDetail
             className="inline-block text-[24px] mr-[20px] cursor-pointer"
             onClick={() => {
-              navigate(`department/${record.mahokhau}`);
+              navigate(`/department/${record.mahokhau}`);
               console.log(record);
             }}
           />
