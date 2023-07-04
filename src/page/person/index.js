@@ -192,7 +192,7 @@ const Person = () => {
           Khai tử
         </Button>
       </div>
-      <Table columns={columns} dataSource={data} pagination={{ pageSize: 4 }} />
+      <Table columns={columns} dataSource={data} pagination={{ pageSize: 3 }} />
       <AddPerson
         handleClose={handleClose}
         open={openAddForm}
